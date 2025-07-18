@@ -1,14 +1,8 @@
-import UserDetails from './UserDetails';
-import UserInfo from './UserInfo';
-
-function ProfilePage() {
+const ProfilePage = () => {
   return (
     <div>
-      <h1>Profile Page</h1>
+      <h2>Profile Page</h2>
       <UserInfo />
-      <UserDetails />
     </div>
   );
 }
-
-export default ProfilePage;
