@@ -1,4 +1,4 @@
-see import { useState } from 'react';
+import { useState } from 'react';
 import useRecipeStore from '../store/recipeStore';
 
 const AddRecipeForm = () => {
@@ -8,16 +8,21 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !description) return;
-
-    addRecipe({ id: Date.now(), title, description });
-    setTitle('');
-    setDescription('');
+    if (title && description) {
+      const newRecipe = {
+        id: Date.now(), // Simple unique ID
+        title,
+        description,
+      };
+      addRecipe(newRecipe);
+      setTitle('');
+      setDescription('');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add New Recipe</h2>
+      <h2>Add a Recipe</h2>
       <input
         type="text"
         placeholder="Title"
@@ -25,14 +30,12 @@ const AddRecipeForm = () => {
         onChange={(e) => setTitle(e.target.value)}
         required
       />
-      <br />
       <textarea
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         required
-      />
-      <br />
+      ></textarea>
       <button type="submit">Add Recipe</button>
     </form>
   );
