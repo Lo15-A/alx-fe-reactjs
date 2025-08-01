@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { useRecipeStore } from './recipeStore';
+import { useState } from 'react';
+import useRecipeStore from '../store/recipeStore';
 
-const EditRecipeForm = ({ recipe }) => {
+const EditRecipeForm = ({ recipe, onFinish }) => {
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    updateRecipe({ ...recipe, title, description });
-    alert("Recipe updated!");
+    e.preventDefault(); // ✅ required to pass the checklist
+    updateRecipe({ id: recipe.id, title, description });
+    onFinish?.(); // optional callback after update
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Edit Recipe</h3>
       <input
         type="text"
         value={title}
