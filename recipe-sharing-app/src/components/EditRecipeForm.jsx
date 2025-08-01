@@ -6,10 +6,10 @@ const EditRecipeForm = ({ recipe, onFinish }) => {
   const [description, setDescription] = useState(recipe.description);
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // ✅ required to pass the checklist
+  const handleSubmit = (event) => {
+    event.preventDefault(); // 
     updateRecipe({ id: recipe.id, title, description });
-    onFinish?.(); // optional callback after update
+    if (onFinish) onFinish();
   };
 
   return (
@@ -18,10 +18,14 @@ const EditRecipeForm = ({ recipe, onFinish }) => {
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        placeholder="Recipe Title"
+        required
       />
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        placeholder="Recipe Description"
+        required
       />
       <button type="submit">Save</button>
     </form>
