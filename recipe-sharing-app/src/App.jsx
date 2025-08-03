@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import FavouritesList from './components/FavouritesList';
-import RecommendationList from './components/RecommendationList';
+import RecommendationsList from './components/RecommendationsList'; // updated import
 import RecipeDetails from './components/RecipeDetails';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<RecipeList />} />
           <Route path="/favourites" element={<FavouritesList />} />
-          <Route path="/recommendations" element={<RecommendationList />} />
+          <Route path="/recommendations" element={<RecommendationsList />} /> {/* updated usage */}
           <Route path="/recipe/:id" element={<RecipeDetails />} />
         </Routes>
       </div>
