@@ -1,15 +1,33 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import RecipeDetail from './components/RecipeDetail';
+// src/App.jsx
+import HomePage from "./components/HomePage";
+import AddRecipeForm from "./components/AddRecipeForm";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/recipe/:id" element={<RecipeDetail />} />
-      </Routes>
-    </Router>
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <header className="bg-sky-500 text-white p-4 text-center shadow-md">
+        <h1 className="text-3xl font-bold">Recipe Sharing Platform</h1>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-4xl mx-auto p-6 space-y-8">
+        {/* Welcome Section */}
+        <section className="bg-white shadow-lg rounded-lg p-6 border border-gray-200">
+          <HomePage />
+        </section>
+
+        {/* Form Section */}
+        <section className="bg-gray-50 shadow-lg rounded-lg p-6 border border-gray-200">
+          <AddRecipeForm />
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-sky-600 text-white text-center p-4 mt-8">
+        <p>&copy; {new Date().getFullYear()} Recipe Sharing Platform</p>
+      </footer>
+    </div>
   );
 }
 

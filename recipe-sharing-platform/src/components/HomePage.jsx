@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom';
+function HomePage() {
+  return (
+    <div>
+      <h1>Welcome Chef </h1>
+    </div>
+  );
+}
 
-// Inside your map function:
-<Link to={`/recipe/${recipe.id}`} key={recipe.id}>
-  {/* Your card content */}
-</Link>
+export default HomePage;
