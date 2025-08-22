@@ -1,27 +1,51 @@
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
-      setError("All fields are required");
+    const newErrors = {};
+
+    if (!formData.username) {
+      newErrors.username = "Username is required";
+    }
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    }
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
-    setError("");
-    console.log("Form submitted:", { username, email, password });
+    setErrors({});
+    console.log("Form submitted:", formData);
 
     // Simulate API call
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then((data) => console.log("API Response:", data));
@@ -31,16 +55,15 @@ const RegistrationForm = () => {
     <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "0 auto" }}>
       <h2>Controlled Registration Form</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
       <div>
         <label>Username: </label>
         <input
           type="text"
           name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={formData.username}
+          onChange={handleChange}
         />
+        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
       </div>
 
       <div>
@@ -48,9 +71,10 @@ const RegistrationForm = () => {
         <input
           type="email"
           name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
         />
+        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
       </div>
 
       <div>
@@ -58,9 +82,10 @@ const RegistrationForm = () => {
         <input
           type="password"
           name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
         />
+        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
       </div>
 
       <button type="submit">Register</button>
