@@ -1,11 +1,15 @@
+// src/App.jsx
 import React from "react";
-import FormikForm from "./components/FormikForm";
+import RegistrationForm from "./components/RegistrationForm";
+// For Formik form:
+import FormikForm from "./components/formikForm.jsx"; //
 
 function App() {
   return (
-    <div style={{ marginTop: "20px", textAlign: "center" }}>
-      <h1 style={{ color: "blue" }}>Welcome to Form Handling</h1>
-      <FormikForm />
+    <div>
+      <h1 style={{ color: "blue", textAlign: "center" }}>Welcome to Form Handling</h1>
+      <RegistrationForm />
+      {/* <FormikForm /> Uncomment to test Formik form */}
     </div>
   );
 }

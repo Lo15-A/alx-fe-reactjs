@@ -33,9 +33,10 @@ function RegistrationForm() {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username: </label>
+          {/* controlled input */}
           <input
             type="text"
-            value={username}            {/* ✅ controlled */}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -43,9 +44,10 @@ function RegistrationForm() {
 
         <div>
           <label>Email: </label>
+          {/* controlled input */}
           <input
             type="email"
-            value={email}              {/* ✅ controlled */}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -53,9 +55,10 @@ function RegistrationForm() {
 
         <div>
           <label>Password: </label>
+          {/* controlled input */}
           <input
             type="password"
-            value={password}           {/* ✅ controlled */}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
