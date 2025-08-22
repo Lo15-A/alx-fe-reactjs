@@ -1,11 +1,11 @@
 import React from "react";
-import RegistrationForm from "./components/RegistrationForm";
+import FormikForm from "./components/FormikForm";
 
 function App() {
   return (
-    <div>
-      <h1>Welcome to Form Handling</h1>
-      <RegistrationForm />
+    <div style={{ marginTop: "20px", textAlign: "center" }}>
+      <h1 style={{ color: "blue" }}>Welcome to Form Handling</h1>
+      <FormikForm />
     </div>
   );
 }

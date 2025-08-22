@@ -1,96 +1,70 @@
 import React, { useState } from "react";
 
-const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
+function RegistrationForm() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let formErrors = {};
 
-    const newErrors = {};
+    if (!username) formErrors.username = "Username is required";
+    if (!email) formErrors.email = "Email is required";
+    if (!password) formErrors.password = "Password is required";
 
-    if (!formData.username) {
-      newErrors.username = "Username is required";
-    }
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    }
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
       return;
     }
 
+    console.log("Form submitted:", { username, email, password });
+    alert("Registration successful!");
+    setUsername("");
+    setEmail("");
+    setPassword("");
     setErrors({});
-    console.log("Form submitted:", formData);
-
-    // Simulate API call
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log("API Response:", data));
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "0 auto" }}>
+    <div>
       <h2>Controlled Registration Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username: </label>
+          <input
+            type="text"
+            value={username}            {/* ✅ controlled */}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
+        </div>
 
-      <div>
-        <label>Username: </label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
-      </div>
+        <div>
+          <label>Email: </label>
+          <input
+            type="email"
+            value={email}              {/* ✅ controlled */}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+        </div>
 
-      <div>
-        <label>Email: </label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-      </div>
+        <div>
+          <label>Password: </label>
+          <input
+            type="password"
+            value={password}           {/* ✅ controlled */}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
+        </div>
 
-      <div>
-        <label>Password: </label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
-      </div>
-
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default RegistrationForm;
