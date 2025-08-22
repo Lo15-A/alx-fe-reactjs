@@ -1,13 +1,11 @@
 // src/components/ProfileDetails.jsx
 import React from "react";
 
-function ProfileDetails() {
+export default function ProfileDetails() {
   return (
-    <div>
-      <h2>Profile Details</h2>
-      <p>Here are the user details...</p>
+    <div style={{ marginTop: "20px" }}>
+      <h3>Profile Details</h3>
+      <p>This is the profile details section.</p>
     </div>
   );
 }
-
-export default ProfileDetails;
