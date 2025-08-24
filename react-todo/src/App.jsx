@@ -1,13 +1,11 @@
-import React from "react";
-import TodoList from "./components/TodoList";
+import React from 'react';
+import TodoList from './components/TodoList';
 
-function App() {
+export default function App() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>React Todo App</h1>
+    <div style={{ padding: 24 }}>
+      <h1>React Todo</h1>
       <TodoList />
     </div>
   );
 }
-
-export default App;
